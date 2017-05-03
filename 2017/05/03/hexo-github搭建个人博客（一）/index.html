@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://github.com/sjw9507">
-  <title>Archives | sjw 的博客</title>
+  <title>hexo+github搭建个人博客（一） | sjw 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="sjw 的博客">
-<meta property="og:url" content="http://github.com/sjw9507/archives/index.html">
+  <meta name="description" content="前言使用github pages服务搭建博客的好处有许多：  全是静态文件，访问速度快； 免费方便，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的； 博客内容可以轻松打包、转移、发布到其它平台； 等等；">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+github搭建个人博客（一）">
+<meta property="og:url" content="http://github.com/sjw9507/2017/05/03/hexo-github搭建个人博客（一）/index.html">
 <meta property="og:site_name" content="sjw 的博客">
+<meta property="og:description" content="前言使用github pages服务搭建博客的好处有许多：  全是静态文件，访问速度快； 免费方便，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的； 博客内容可以轻松打包、转移、发布到其它平台； 等等；">
+<meta property="og:image" content="http://github.com/sjw9507/2017/05/03/hexo-github搭建个人博客（一）/hexo1/1.jpg">
+<meta property="og:updated_time" content="2017-05-03T16:09:36.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sjw 的博客">
+<meta name="twitter:title" content="hexo+github搭建个人博客（一）">
+<meta name="twitter:description" content="前言使用github pages服务搭建博客的好处有许多：  全是静态文件，访问速度快； 免费方便，不需要服务器不需要后台； 可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的； 博客内容可以轻松打包、转移、发布到其它平台； 等等；">
+<meta name="twitter:image" content="http://github.com/sjw9507/2017/05/03/hexo-github搭建个人博客（一）/hexo1/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="sjw 的博客" type="application/atom+xml">
   
@@ -153,36 +160,111 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hexo-github搭建个人博客（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/03/hexo-github搭建个人博客（一）/" class="archive-article-date">
-  	<time datetime="2017-05-03T14:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/hexo-github搭建个人博客（一）/">hexo+github搭建个人博客（一）</a>
+    <h1 class="article-title" itemprop="name">
+      hexo+github搭建个人博客（一）
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/05/03/hexo-github搭建个人博客（一）/" class="archive-article-date">
+  	<time datetime="2017-05-03T14:38:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用github pages服务搭建博客的好处有许多：</p>
+<ul>
+<li>全是静态文件，访问速度快；</li>
+<li>免费方便，不需要服务器不需要后台；</li>
+<li>可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；</li>
+<li>博客内容可以轻松打包、转移、发布到其它平台；</li>
+<li>等等；<a id="more"></a></li>
+</ul>
+<p>本文是用windows系统</p>
+<hr>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li>Node.js： 用来创建hexo博客框架的,我的版本为：node-v6.10.2-x64</li>
+<li>Git客户端： 用来提交代码，至于它的命令大家应该都会一点，如果即使不懂Git的命令，跟着本博文走，也完全没问题，我安装的版本是Git-2.12.2-64-bit</li>
+</ol>
+<p>安装完后可以打开cmd控制台，输入命令查看版本，这里给出我的例子：</p>
+<p><img src="hexo1/1.jpg" alt="img"></p>
+<p>如何显示版本就说明安装成功了。</p>
+<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>首先介绍一下hexo的常见命令:</p>
+<pre>
+hexo new "postName" #新建文章
+hexo new page "pageName" #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+</pre>
+缩写：
+<pre>
+hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy
+</pre>
+组合命令：
+<pre>
+hexo s -g #生成并本地预览
+hexo d -g #生成并上传
+</pre>
+利用 npm 命令即可安装。在任意位置点击鼠标右键，选择Git Base
+
+输入安装hexo命令：
+<pre>npm install -g hexo</pre>
+安装完成后，在你想要把hexo部署到文件夹下（如我的是F:\develop\hexo，这个文件夹自己创，点击鼠标右键，选择Git Bash），执行
+
+<pre>hexo init</pre>
+
+<p>这个指令Hexo 即会自动在目标文件夹建立网站所需要的所有文件。</p>
+<p>安装依赖包：</p>
+<pre>npm install</pre>
+
+<p>让我们看看刚刚下载的hexo文件带来了什么，在F:\develop\hexo内执行以下命令：</p>
+<pre>hexo g
+hexo s</pre>
+
+<p>然后打开浏览器访问<code>http://localhost:4000</code>， 此时，你应该看到了一个漂亮的博客了，当然这个博客只是在本地的，别人是看不到的。但是这也足够让我们激动了是不是，接下来就是如何把它部署到github上了。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,46 +276,89 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://github.com/sjw9507/2017/05/03/hexo-github搭建个人博客（一）/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/03/建立博客的初衷/" class="archive-article-date">
-  	<time datetime="2017-05-03T07:19:24.338Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/03/建立博客的初衷/">建立博客的初衷</a>
-    </h1>
+  
+    <a href="/2017/05/03/建立博客的初衷/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">建立博客的初衷</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -256,8 +381,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
