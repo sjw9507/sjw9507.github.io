@@ -5,24 +5,31 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://github.com/sjw9507">
-  <title>Hello World | sjw 的博客</title>
+  <link rel="dns-prefetch" href="http://sjw9507.github.io">
+  <title>windows下搭建dubbo+zookeeper环境与使用 | sjw 的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="前言之前在网上学到用linux搭建，便想着用windows试试。经过一番折腾终于弄了出来。故写这篇文章也是做一个总结，理一理我遇到的一些问题。 因为我之前的工程是用maven搭建的，所以这是基于整合ssm框架的maven工程。 那么首先应该谈一谈为什么要使用dubbo：">
+<meta name="keywords" content="dubbo,zookeeper">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://github.com/sjw9507/2017/05/02/hello-world/index.html">
+<meta property="og:title" content="windows下搭建dubbo+zookeeper环境与使用">
+<meta property="og:url" content="http://sjw9507.github.io/2017/05/06/windows下搭建dubbo+zookeeper环境与使用/index.html">
 <meta property="og:site_name" content="sjw 的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:updated_time" content="2017-05-02T08:26:16.515Z">
+<meta property="og:description" content="前言之前在网上学到用linux搭建，便想着用windows试试。经过一番折腾终于弄了出来。故写这篇文章也是做一个总结，理一理我遇到的一些问题。 因为我之前的工程是用maven搭建的，所以这是基于整合ssm框架的maven工程。 那么首先应该谈一谈为什么要使用dubbo：">
+<meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/5.jpg">
+<meta property="og:updated_time" content="2017-05-08T15:40:28.125Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="windows下搭建dubbo+zookeeper环境与使用">
+<meta name="twitter:description" content="前言之前在网上学到用linux搭建，便想着用windows试试。经过一番折腾终于弄了出来。故写这篇文章也是做一个总结，理一理我遇到的一些问题。 因为我之前的工程是用maven搭建的，所以这是基于整合ssm框架的maven工程。 那么首先应该谈一谈为什么要使用dubbo：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="sjw 的博客" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+	<link href="/img/favicon.ico" rel="icon" type="image/x-ico">
   
   <link rel="stylesheet" type="text/css" href="/./main.b3331d.css">
   <style type="text/css">
@@ -84,11 +91,11 @@
 				
 					<a class="github" target="_blank" href="https://github.com/sjw9507" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="mail" target="_blank" href="mailto:871123091@qq.com" title="mail"><i class="icon-mail"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="weixin" target="_blank" href="/img/weixin.jpg" title="weixin"><i class="icon-weixin"></i></a>
 		        
 			</div>
 		</nav>
@@ -127,11 +134,11 @@
 					
 						<a class="github" target="_blank" href="https://github.com/sjw9507" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="mail" target="_blank" href="mailto:871123091@qq.com" title="mail"><i class="icon-mail"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="weixin" target="_blank" href="/img/weixin.jpg" title="weixin"><i class="icon-weixin"></i></a>
 			        
 				</div>
 			</nav>
@@ -157,35 +164,118 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-windows下搭建dubbo+zookeeper环境与使用" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      windows下搭建dubbo+zookeeper环境与使用
     </h1>
   
 
         
-        <a href="/2017/05/02/hello-world/" class="archive-article-date">
-  	<time datetime="2017-05-02T08:26:16.515Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-02</time>
+        <a href="/2017/05/06/windows下搭建dubbo+zookeeper环境与使用/" class="archive-article-date">
+  	<time datetime="2017-05-06T08:35:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前在网上学到用linux搭建，便想着用windows试试。经过一番折腾终于弄了出来。故写这篇文章也是做一个总结，理一理我遇到的一些问题。</p>
+<p>因为我之前的工程是用maven搭建的，所以这是基于整合ssm框架的maven工程。</p>
+<p>那么首先应该谈一谈为什么要使用dubbo：</p>
+<a id="more"></a>
+<p>随着互联网的发展，或许网站的规模会越来越大，常规的垂直应用架构已无法应对，那么这个时候仅仅靠一台服务器是不够的。所以需要进行分布式架构。</p>
+<p>那么这里，就有了问题，当服务器多了之后，它们之间是如何进行通讯，也就是调用和访问呢？这就要用到webservice技术了。而当你的系统足够大时，就会有许许多多的服务在通信，这时候就需要一个治理系统来保证有条不紊的演进。Dubbo是阿里开源的分布式服务框架，可以对服务统一治理，监控等等。</p>
+<p>这是dubbo的架构图</p>
+<p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/1.jpg" alt="img"></p>
+<p>节点角色说明：</p>
+<ul>
+<li>Provider: 暴露服务的服务提供方。</li>
+<li>Consumer: 调用远程服务的服务消费方。</li>
+<li>Registry: 服务注册与发现的注册中心。</li>
+<li>Monitor: 统计服务的调用次调和调用时间的监控中心。</li>
+<li>Container: 服务运行容器。</li>
+</ul>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="zookeeper的安装配置"><a href="#zookeeper的安装配置" class="headerlink" title="zookeeper的安装配置"></a>zookeeper的安装配置</h3><p>Zookeeper作为Dubbo服务的注册中心，Zookeeper是hadoop的一个子项目，其发展历程无需赘述。Dubbo原先基于数据库的注册中心，没采用Zookeeper，Zookeeper一个分布式的服务框架，是树型的目录服务的数据存储，能做到集群管理数据，这里能很好的作为Dubbo服务的注册中心，Dubbo能与Zookeeper做到集群部署。官方也是推荐使用zookeeper。</p>
+<p>首先下载zookeeper，我这里的版本是3.4.6。解压后进入zookeeper的<code>conf</code>文件夹修改<code>zoo-simple.cfg</code> 为 <code>zoo.cfg</code>。</p>
+<p>接着用编辑器打开<code>zoo.cfg</code>文件，做如下操作</p>
+<p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/2.jpg" alt="img"></p>
+<p>接着就是启动zookeeper，进入bin文件夹 启动zkServer.cmd</p>
+<p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/3.jpg" alt="img"></p>
+<p>这样，便是启动成功了，因为我的是在本机上部署的，所以ip地址是回环地址0，0，0，0。端口号则是之前默认设置的2181。<strong>注意 ：这个窗口不要关闭！让注册中心服务一直运行。</strong></p>
+<h3 id="生产者和消费者项目的运行"><a href="#生产者和消费者项目的运行" class="headerlink" title="生产者和消费者项目的运行"></a>生产者和消费者项目的运行</h3><p>因为我的是maven工程，所以要添加依赖</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;com.alibaba&lt;/groupId&gt; </div><div class="line">	&lt;artifactId&gt;dubbo&lt;/artifactId&gt; </div><div class="line">	&lt;version&gt;2.5.3&lt;/version&gt;  </div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;org.apache.zookeeper&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;zookeeper&lt;/artifactId&gt; </div><div class="line">	&lt;version&gt;3.4.6&lt;/version&gt; </div><div class="line">&lt;/dependency&gt;</div><div class="line">&lt;dependency&gt;</div><div class="line">	&lt;groupId&gt;com.github.sgroschupf&lt;/groupId&gt;</div><div class="line">	&lt;artifactId&gt;zkclient&lt;/artifactId&gt;</div><div class="line">	&lt;version&gt;0.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure>
+<p>同时，在业务层做如下，这里给出我的例子，接口及实体类省略。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ItemServiceImpl</span> <span class="keyword">implements</span> <span class="title">ItemService</span> </span>&#123;</div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> TbItemMapper itemMapper;</div><div class="line"></div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> TbItem <span class="title">getItemById</span><span class="params">(<span class="keyword">long</span> itemId)</span> </span>&#123;</div><div class="line">		TbItem item = itemMapper.selectByPrimaryKey(itemId);</div><div class="line">		<span class="keyword">return</span> item;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>控制层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ItemController</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> ItemService itemService;</div><div class="line"></div><div class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/item/&#123;itemId&#125;"</span>)</div><div class="line">	<span class="meta">@ResponseBody</span></div><div class="line">	<span class="function"><span class="keyword">public</span> TbItem <span class="title">getItemById</span><span class="params">(@PathVariable Long itemId)</span> </span>&#123;</div><div class="line">		TbItem tbItem = itemService.getItemById(itemId);</div><div class="line">		<span class="keyword">return</span> tbItem;</div><div class="line">	&#125;</div><div class="line">｝</div></pre></td></tr></table></figure>
+<p>好了，写完这些，我们还要在配置文件中添加dubbo的配置。</p>
+<p>首先，在业务层中作为生产者，需要在spring配置文件中添加如下</p>
+<pre><code>&lt;!-- 发布dubbo服务 --&gt;
+&lt;!-- 提供方应用信息，用于计算依赖关系 --&gt;
+&lt;dubbo:application name=&quot;eshop-manager&quot; /&gt;
+&lt;!-- 注册中心的地址 --&gt;
+&lt;!--这里因为我的zookeeper注册在本机，所以ip地址是这个，大家根据自己的不同修改--&gt;
+&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot; /&gt;
+&lt;!-- 用dubbo协议在20880端口暴露服务 --&gt;
+&lt;dubbo:protocol name=&quot;dubbo&quot; port=&quot;20880&quot; /&gt;
+&lt;!-- 声明需要暴露的服务接口 --&gt;
+&lt;dubbo:service interface=&quot;com.eshop.service.ItemService&quot;
+    ref=&quot;itemServiceImpl&quot; /&gt;
+</code></pre><p>注意，scheme不要忘了引入</p>
+<pre><code>xmlns:dubbo=&quot;http://code.alibabatech.com/schema/dubbo&quot;
+http://code.alibabatech.com/schema/dubbo
+</code></pre><p>另外，scheme文件要手动添加，在<code>eclipse</code>中点击<code>Windows--&gt;preference</code>，在搜索框输入<code>xml</code>,点击<code>XML Catalog</code>,找到<code>add</code>添加，如下图</p>
+<p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/4.jpg" alt="img"></p>
+<p>同时，作为消费者的控制层也要添加如下，scheme导入同上</p>
+<pre><code>&lt;!-- 引用dubbo服务 --&gt;
+&lt;dubbo:application name=&quot;eshop-manager-web&quot; /&gt;
+&lt;dubbo:registry protocol=&quot;zookeeper&quot; address=&quot;127.0.0.1:2181&quot; /&gt;
+&lt;dubbo:reference interface=&quot;com.eshop.service.ItemService&quot;
+    id=&quot;itemService&quot; /&gt;
+</code></pre><p>补充说明：  </p>
+<ul>
+<li><p>dubbo:registry 标签一些属性的说明：</p>
+<ul>
+<li>register是否向此注册中心注册服务，如果设为false，将只订阅，不注册。</li>
+<li>check注册中心不存在时，是否报错。</li>
+<li>subscribe是否向此注册中心订阅服务，如果设为false，将只注册，不订阅。</li>
+<li>timeout注册中心请求超时时间(毫秒)。</li>
+<li>address可以Zookeeper集群配置，地址可以多个以逗号隔开等。</li>
+</ul>
+</li>
+<li><p>dubbo:service标签的一些属性说明：</p>
+<ul>
+<li>interface服务接口的路径</li>
+<li>ref引用对应的实现类的Bean的ID</li>
+<li>registry向指定注册中心注册，在多个注册中心时使用，值为<dubbo:registry>的id属性，多个注册中心ID用逗号分隔，如果不想将该服务注册到任何registry，可将值设为N/A</dubbo:registry></li>
+<li>register 默认true ，该协议的服务是否注册到注册中心。</li>
+</ul>
+</li>
+</ul>
+<h3 id="dubbo-admin-UI工具的安装"><a href="#dubbo-admin-UI工具的安装" class="headerlink" title="dubbo admin UI工具的安装"></a>dubbo admin UI工具的安装</h3><p>这个是dubbo的客户端监控中心。<br>我的版本是dubbo-admin-2.5.4.war，大家可以在网上下载到，解压后放到tomcat安装处的<code>webapps</code>下</p>
+<p>这里注意，如果监控中心与注册中心在同一台服务器上，可以不需要任何配置。<br>如果不在同一台，则需要修改解压文件后的<code>WEB-INF</code>下的<code>dubbo.properties</code>文件</p>
+<p>这里的ip地址就需要修改了。</p>
+<pre>dubbo.registry.address=zookeeper://127.0.0.1:2181</pre>
+
+<hr>
+<p>配置好后，启动tomcat，在浏览器中输入<code>http://localhost:8080/dubbo</code>（这里的dubbo是我的dubbo admin的项目名字，可以更改。）登录时需要用户名<code>root</code>和密码<code>root</code>。</p>
+<p>就可以看到如下图片，有提供者和消费者注册的服务了。我们也可以对它们进行管理操作。</p>
+<p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/1/5.jpg" alt="img"></p>
+<hr>
+<p>另外，这里谈一谈我在实践中遇到的问题，花费了不少的时间。</p>
+<p>在运行的时候经常报错，无非是如下这里个问题，我做一个归纳：  </p>
+<ol>
+<li>读取配置文件问题，看一看web.xml有没有读入  </li>
+<li>注解导包是否正确，有没有缺少什么  </li>
+<li>别忘了pojo类实现序列化接口  </li>
+<li>防火墙或许对你来说是个问题。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到此基本上就已经结束了，只是明白了dubbo最基本的使用，即应用之间的rpc调用，服务提供者和使用者。Dubbo还提供了其他很多高级特性，如路由规则、参数回调、服务分组、服务降级等等，而且很多特性在给出内置实现的基础上，还给出了扩展的接口，我们可以给出自定义的实现，非常方便而且强大。至于zookeeper，我这里也只是单机配置，还没有尝试集群配置。以后再慢慢深入研究。</p>
 
       
 
@@ -215,6 +305,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -265,7 +370,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://github.com/sjw9507/2017/05/02/hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://sjw9507.github.io/2017/05/06/windows下搭建dubbo+zookeeper环境与使用/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,21 +384,37 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/05/02/my-new-post/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          my new post
-        
-      </div>
-    </a>
   
+    <a href="/2017/05/04/hexo+github搭建个人博客（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo+github搭建个人博客（二）</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
 
 
 
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="windows下搭建dubbo+zookeeper环境与使用" data-title="windows下搭建dubbo+zookeeper环境与使用" data-url="http://sjw9507.github.io/2017/05/06/windows下搭建dubbo+zookeeper环境与使用/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
   
@@ -328,10 +449,10 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -391,6 +512,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -444,7 +577,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">谢谢大家光临</div>
   	  	
     	</section>
     
