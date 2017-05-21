@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/1.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/2.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/3.jpg">
-<meta property="og:updated_time" content="2017-05-16T10:50:26.519Z">
+<meta property="og:updated_time" content="2017-05-21T06:37:05.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下的dubbo+zookeeper环境搭建">
 <meta name="twitter:description" content="前言之前我有使用window搭建过，但是对于服务器来说，linux是最适合的。Linux系统具有稳定且高效、免费或少许费用、安全的用户及文件权限策略、多用户、多任务、支持多线程和多CPU、漏洞少且快速修补、相对不耗费资源、可自由定制等具有优越性的特点。 此篇文章是依据于上一篇用windows搭建的改写，主要说说在linux上的配置问题。">
@@ -205,7 +205,7 @@ java.nio.channels.ClosedChannelException
     at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1170)
 </pre>
 
-<p><strong>解决方法</strong>：<br>开启防火墙端口 2181 <code>/sbin/iptables -I INPUT -p tcp --dport 3306 -j ACCEPT</code><br>将该设置添加到防火墙的规则中<code>/etc/rc.d/init.d/iptables save</code></p>
+<p><strong>解决方法</strong>：<br>开启防火墙端口 2181 <code>/sbin/iptables -I INPUT -p tcp --dport 2181 -j ACCEPT</code><br>将该设置添加到防火墙的规则中<code>/etc/rc.d/init.d/iptables save</code></p>
 <p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/2.jpg" alt="img"></p>
 <h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>然后即可到bin目录下启动服务<code>zkServer.sh start</code></p>
 <p>查看服务状态，是否启动 <code>zkServer.sh  status</code></p>
