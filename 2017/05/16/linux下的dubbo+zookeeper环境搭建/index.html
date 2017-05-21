@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/4.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/5.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/6.jpg">
-<meta property="og:updated_time" content="2017-05-21T14:12:04.117Z">
+<meta property="og:updated_time" content="2017-05-21T14:21:43.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux下的dubbo+zookeeper环境搭建">
 <meta name="twitter:description" content="前言之前我有使用window搭建过，但是对于服务器来说，linux是最适合的。Linux系统具有稳定且高效、免费或少许费用、安全的用户及文件权限策略、多用户、多任务、支持多线程和多CPU、漏洞少且快速修补、相对不耗费资源、可自由定制等具有优越性的特点。 此篇文章是依据于上一篇用windows搭建的改写，主要说说在linux上的配置问题。">
@@ -235,16 +235,13 @@ java.nio.channels.ClosedChannelException
 touch /var/lock/subsys/local  
 export JAVA_HOME=/usr/local/java/jdk1.7.0_72  
 /home/sjw/zookeeper/zookeeper-3.4.6/bin/zkServer.sh start  
-</code></pre><p><strong>第二种</strong>：把zookeeper做成服务</p>
+</code></pre><p><br><br><strong>第二种</strong>：把zookeeper做成服务</p>
 <p>root用户下进入到<code>/etc/rc.d/init.d</code>目录下</p>
 <p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/4.jpg" alt="img"></p>
 <p>新建一个zookeeper脚本,并添加执行权限</p>
-<pre>
-touch zookeeper
+<pre><code>touch zookeeper
 chmod +x zookeeper
-</pre>
-
-<p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/5.jpg" alt="img"></p>
+</code></pre><p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/5.jpg" alt="img"></p>
 <p>接着用vi zookeeper来编辑这个文件</p>
 <pre><code>#!/bin/bash
 #chkconfig:2345 20 90
@@ -262,10 +259,10 @@ case $1 in
           *)  echo &quot;require start|stop|status|restart&quot;  ;;
 esac
 </code></pre><p>这个时候我们就可以用使用service zookeeper start/stop命令来尝试启动关闭zookeeper，使用service zookeeper status查看zookeeper状态了。</p>
-<p>最后一点我们需要开机自动启动<br>所以需要添加到启动里面<br>使用<code>chkconfig --add zookeeper</code>命令吧zookeeper添加到开机启动里面</p>
+<p>最后一点我们需要开机自动启动<br>所以需要添加到启动里面<br>使用<code>chkconfig --add zookeeper</code>命令把zookeeper添加到开机启动里面</p>
 <p>添加完成之后接这个使用chkconfig –list 来看看我们添加的zookeeper是否在里面</p>
 <p><img src="https://raw.githubusercontent.com/sjw9507/imgs/master/dubbo_zookeeper/linux_3/6.jpg" alt="img"></p>
-<p>如果上面的操作都正常的话；你就可以重启你的linux服务器了,并查看是否自启成功了。</p>
+<p>如果上面的操作都正常的话，你就可以重启你的linux服务器了,并查看是否自启成功了。</p>
 
       
 
@@ -508,6 +505,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
@@ -517,10 +518,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
